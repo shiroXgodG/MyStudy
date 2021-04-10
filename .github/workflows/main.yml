@@ -23,9 +23,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-    # slack 으로 메세지 발송
-      - name : send message to slack
-        run : curl -X POST -H "Content-type:application/json" --data'{"text":"빌드가 완료되었습니다."}'${{secrets.SLACK_WEBHOOK_YRL }}
+      - name: Hello world 
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+        id: hello
+      - name: Echo the greeting's time
+        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
     
